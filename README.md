@@ -1,6 +1,6 @@
 # Boletín Claro — MCP del dinero público español
 
-**El servidor [MCP](https://modelcontextprotocol.io) para buscar subvenciones, licitaciones y ayudas públicas de España con datos reales, desde tu asistente de IA.**
+**El [MCP](https://modelcontextprotocol.io) del dinero público español —subvenciones y licitaciones— y de todos los boletines oficiales (BOE, BORME, autonómicos). Con datos reales, desde tu asistente de IA.**
 
 [![MCP](https://img.shields.io/badge/MCP-Streamable_HTTP-1f6feb)](https://modelcontextprotocol.io)
 [![Sin instalación](https://img.shields.io/badge/conexi%C3%B3n-1_clic_(URL)-2ea043)](#conexión-rápida)
@@ -8,7 +8,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Web](https://img.shields.io/badge/web-boletinclaro.es-111)](https://boletinclaro.es)
 
-Conecta tu IA (Claude, ChatGPT, Cursor, VS Code, Gemini…) a **Boletín Claro** y pregúntale en lenguaje natural por el dinero público español. Las respuestas salen de datos reales indexados —subvenciones, licitaciones, I+D europeo y mercantil— no de suposiciones del modelo.
+Conecta tu IA (Claude, ChatGPT, Cursor, VS Code, Gemini…) a **Boletín Claro** y pregúntale en lenguaje natural. Dos superficies, una sola conexión:
+
+- 💶 **Dinero público** — subvenciones, licitaciones, ayudas y a quién se las llevan.
+- 📰 **Boletines oficiales** — leyes, decretos, anuncios y normativa del BOE, el BORME y los boletines autonómicos.
+
+Las respuestas salen de datos reales indexados, no de suposiciones del modelo.
 
 > **Una sola URL, sin instalar nada, sin API key, sin registro:**
 > ```
@@ -112,12 +117,16 @@ Cada resultado enlaza a su ficha en **boletinclaro.es**.
 
 ## Qué datos hay detrás
 
+**Dinero público**
 - **BDNS** — subvenciones y ayudas públicas (concedidas y convocatorias).
 - **PLACSP** — licitaciones y contratos del sector público español.
 - **TED** — contratación pública de la UE.
 - **CORDIS** — proyectos de I+D financiados por la UE.
-- **BORME** — datos mercantiles de empresas.
-- **BOE + boletines autonómicos** — normativa y anuncios oficiales.
+
+**Boletines oficiales**
+- **BOE** — normativa estatal: leyes, reales decretos, órdenes, resoluciones, anuncios.
+- **BORME** — actos mercantiles y datos de empresas.
+- **Boletines autonómicos** — BOJA, DOGC, DOG, BOCM y los demás.
 
 ## Para desarrolladores
 
@@ -138,7 +147,7 @@ Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia auto
 
 ## In English
 
-**Boletín Claro is the MCP server for searching Spanish public money** — government grants (BDNS), public tenders (PLACSP/TED), EU R&D funding (CORDIS) and company registry data (BORME), with real indexed data instead of model guesses.
+**Boletín Claro is the MCP server for Spanish public money and official gazettes** — government grants (BDNS), public tenders (PLACSP/TED) and EU R&D funding (CORDIS), plus the official gazettes (BOE, BORME and regional bulletins: laws, decrees, announcements) — with real indexed data instead of model guesses.
 
 Remote server (Streamable HTTP), **no install, no API key**. Just point your MCP client at:
 
