@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Web](https://img.shields.io/badge/web-boletinclaro.es-111)](https://boletinclaro.es)
 
-Conecta tu IA (Claude, ChatGPT, Cursor, VS Code, Gemini…) a **Boletín Claro** y pregúntale en lenguaje natural. Dos superficies, una sola conexión:
+Conecta tu IA (Claude, ChatGPT, Cursor, VS Code, Gemini…) a [**Boletín Claro**](https://boletinclaro.es) y pregúntale en lenguaje natural. Dos superficies, una sola conexión:
 
 - 💶 **Dinero público** — subvenciones, licitaciones, ayudas y a quién se las llevan.
 - 📰 **Boletines oficiales** — leyes, decretos, anuncios y normativa del BOE, el BORME y los boletines autonómicos.
@@ -19,6 +19,7 @@ Las respuestas salen de datos reales indexados, no de suposiciones del modelo.
 > ```
 > https://boletinclaro.es/mcp
 > ```
+> Conéctate y míralo en [boletinclaro.es/mcp](https://boletinclaro.es/mcp).
 
 ---
 
@@ -106,7 +107,7 @@ npx mcp-remote https://boletinclaro.es/mcp
 | **`detalle_convocatoria`** | Detalle de una convocatoria de subvenciones (BDNS): importe total, nº de concesiones y principales beneficiarios. |
 | **`detalle_licitacion`** | Detalle de una licitación pública (PLACSP): importe, plazo, lugar, CPV, lotes, órgano y adjudicatarios. |
 
-Cada resultado enlaza a su ficha en **boletinclaro.es**.
+Cada resultado enlaza a su ficha en **[boletinclaro.es](https://boletinclaro.es)**.
 
 ## Ejemplos (pregúntale a tu IA)
 
@@ -158,6 +159,14 @@ https://boletinclaro.es/mcp
 Tools (Spanish names, natural-language Spanish queries): `buscar_oportunidades` (grants & tenders matching a company profile), `buscar_boletines` (official-gazette law/announcement search), `buscar_empresa` / `perfil_empresa` (public money received by a company), `detalle_convocatoria` / `detalle_licitacion` (full detail of a grant call / tender). See the connection snippets above.
 
 ---
+
+## Más información
+
+- 🌐 **Web:** [boletinclaro.es](https://boletinclaro.es) — el dinero público español, indexado y resumido con IA.
+- 🔌 **Conector MCP (esta guía, online):** [boletinclaro.es/mcp](https://boletinclaro.es/mcp)
+- 📰 **Conecta tu IA al BOE:** [boletinclaro.es/mcp-boe](https://boletinclaro.es/mcp-boe)
+- 💶 **Buscar subvenciones con ChatGPT o Claude:** [boletinclaro.es/subvenciones-con-chatgpt](https://boletinclaro.es/subvenciones-con-chatgpt)
+- 📋 **Buscar licitaciones con ChatGPT o Claude:** [boletinclaro.es/licitaciones-con-chatgpt](https://boletinclaro.es/licitaciones-con-chatgpt)
 
 ## Sobre Boletín Claro
 
