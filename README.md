@@ -1,6 +1,6 @@
-# Boletín Claro — MCP del dinero público español
+# Boletín Claro — el MCP de los datos públicos de España
 
-**El [MCP](https://modelcontextprotocol.io) del dinero público español —subvenciones y licitaciones— y de todos los boletines oficiales (BOE, BORME, autonómicos). Con datos reales, desde tu asistente de IA.**
+**Datos públicos españoles para tu IA: el dinero público —subvenciones y licitaciones— y todos los boletines oficiales (BOE, BORME, autonómicos). Con datos reales, no suposiciones.**
 
 [![MCP](https://img.shields.io/badge/MCP-Streamable_HTTP-1f6feb)](https://modelcontextprotocol.io)
 [![Sin instalación](https://img.shields.io/badge/conexi%C3%B3n-1_clic_(URL)-2ea043)](#conexión-rápida)
@@ -147,7 +147,7 @@ Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia auto
 
 ## In English
 
-**Boletín Claro is the MCP server for Spanish public money and official gazettes** — government grants (BDNS), public tenders (PLACSP/TED) and EU R&D funding (CORDIS), plus the official gazettes (BOE, BORME and regional bulletins: laws, decrees, announcements) — with real indexed data instead of model guesses.
+**Boletín Claro is the MCP server for Spanish public-sector data** — public money (government grants via BDNS, public tenders via PLACSP/TED, EU R&D funding via CORDIS) and the official gazettes (BOE, BORME and regional bulletins: laws, decrees, announcements) — with real indexed data instead of model guesses.
 
 Remote server (Streamable HTTP), **no install, no API key**. Just point your MCP client at:
 
@@ -161,6 +161,6 @@ Tools (Spanish names, natural-language Spanish queries): `buscar_oportunidades` 
 
 ## Sobre Boletín Claro
 
-[Boletín Claro](https://boletinclaro.es) indexa el dinero público español y publica resúmenes con IA. Este repositorio documenta su **conector MCP público y gratuito**.
+[Boletín Claro](https://boletinclaro.es) indexa los datos públicos de España —el dinero público y los boletines oficiales— y publica resúmenes con IA. Este repositorio documenta su **conector MCP público y gratuito**.
 
 Hecho en España 🇪🇸 · [boletinclaro.es](https://boletinclaro.es) · Licencia [MIT](LICENSE)
