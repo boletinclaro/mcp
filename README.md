@@ -46,9 +46,7 @@ En `claude_desktop_config.json`:
 </details>
 
 ### Cursor
-[![Add to Cursor](https://img.shields.io/badge/Cursor-Add_to_Cursor-000)](cursor://anysphere.cursor-deeplink/mcp/install?name=boletinclaro&config=eyJ1cmwiOiJodHRwczovL2JvbGV0aW5jbGFyby5lcy9tY3AifQ==)
-
-O en `~/.cursor/mcp.json`:
+En `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
