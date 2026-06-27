@@ -4,7 +4,7 @@
 
 [![MCP](https://img.shields.io/badge/MCP-Streamable_HTTP-1f6feb)](https://modelcontextprotocol.io)
 [![Sin instalación](https://img.shields.io/badge/conexi%C3%B3n-1_clic_(URL)-2ea043)](#conexión-rápida)
-[![Sin API key](https://img.shields.io/badge/auth-an%C3%B3nimo-2ea043)](#conexión-rápida)
+[![Sin registro ni API key](https://img.shields.io/badge/acceso-libre,_sin_registro-2ea043)](#conexión-rápida)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Web](https://img.shields.io/badge/web-boletinclaro.es-111)](https://boletinclaro.es)
 
@@ -172,4 +172,4 @@ Tools (Spanish names, natural-language Spanish queries): `buscar_oportunidades` 
 
 [Boletín Claro](https://boletinclaro.es) indexa los datos públicos de España —el dinero público y los boletines oficiales— y publica resúmenes con IA. Este repositorio documenta su **conector MCP público y gratuito**.
 
-Hecho en España 🇪🇸 · [boletinclaro.es](https://boletinclaro.es) · Licencia [MIT](LICENSE)
+[boletinclaro.es](https://boletinclaro.es) · Licencia [MIT](LICENSE)
