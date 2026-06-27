@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.boletinclaro/mcp",
+  "name": "es.boletinclaro/mcp",
   "title": "Boletín Claro",
   "description": "Datos públicos de España: subvenciones, licitaciones y boletines oficiales (BOE, BORME).",
   "version": "0.1.0",
