@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "es.boletinclaro/mcp",
   "title": "Boletín Claro",
-  "description": "Datos públicos de España: subvenciones, licitaciones y boletines oficiales (BOE, BORME).",
-  "version": "0.1.0",
+  "description": "Subvenciones, licitaciones y boletines oficiales de España y Europa para tu IA. Gratis, sin login.",
+  "version": "0.1.1",
   "websiteUrl": "https://boletinclaro.es/mcp",
   "repository": {
     "url": "https://github.com/boletinclaro/mcp",
