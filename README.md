@@ -125,6 +125,16 @@ Requieren iniciar sesión: tu cliente MCP te lo pedirá la primera vez que uses 
 | **`borrar_alerta`** | Borra una alerta y su historial (pide confirmación; pausarla es la alternativa reversible). |
 | **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF y entérate de lo que ganan o publican. |
 
+### Con tu cuenta — notas y plazos
+
+Lo que apuntes queda también en la ficha de la entrada en boletinclaro.es.
+
+| Herramienta | Para qué |
+|---|---|
+| **`anotar_entrada`** | Escribe una nota en una entrada: una gestión hecha, un pendiente o algo que recordar. Con `fecha` se convierte en un vencimiento del calendario y te avisamos por email 7 días antes y el día antes. |
+| **`listar_notas`** | Las notas de una entrada, de la más reciente a la más antigua, con su vencimiento y quién la escribió. |
+| **`borrar_nota`** | Borra una nota tuya (solo el autor puede). |
+
 ### Con tu cuenta — modo clientes (asesorías y gestorías)
 
 Para quien sigue el dinero público de varios clientes. Requieren tener el modo clientes activado.
@@ -215,6 +225,14 @@ Spanish tool names, natural-language Spanish queries.
 | `pausar_alerta` · `reactivar_alerta` | Stop or resume the notifications of one alert. |
 | `borrar_alerta` | Delete an alert and its history (confirmation required). |
 | `vigilar_empresa` | Watch specific companies by name or tax ID. |
+
+**Notes and deadlines** (they show up on the entry at boletinclaro.es too):
+
+| Tool | What it does |
+|---|---|
+| `anotar_entrada` | Write a note on an entry: something done, something pending, something to remember. With `fecha` it becomes a calendar deadline and you get an email 7 days and 1 day before. |
+| `listar_notas` | An entry's notes, newest first, with their due date and author. |
+| `borrar_nota` | Delete one of your own notes (author only). |
 
 **Client mode** (for consultancies tracking public money for several clients):
 
