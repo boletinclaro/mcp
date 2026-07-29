@@ -98,14 +98,45 @@ npx mcp-remote https://boletinclaro.es/mcp
 
 ## Herramientas
 
+### Sin login — datos públicos
+
 | Herramienta | Para qué |
 |---|---|
 | **`buscar_oportunidades`** | Subvenciones y licitaciones que encajan con el perfil de una empresa, en lenguaje natural. Filtros: tipo, zona (CCAA/provincia/municipio), importe mín/máx, en plazo o histórico. |
 | **`buscar_boletines`** | Normativa, leyes, decretos y anuncios en los boletines oficiales (BOE, BORME y autonómicos: BOJA, DOGC, DOG, BOCM…). |
+| **`resumen_boletin`** | Qué se publicó en un boletín un día concreto, agrupado por materia. |
 | **`buscar_empresa`** | Encuentra el NIF de una empresa por su nombre y su total de dinero público recibido. |
 | **`perfil_empresa`** | Cuánto dinero público ha recibido una empresa (por NIF): subvenciones, contratos, I+D europeo y mercantil, con totales y sectores. |
 | **`detalle_convocatoria`** | Detalle de una convocatoria de subvenciones (BDNS): importe total, nº de concesiones y principales beneficiarios. |
 | **`detalle_licitacion`** | Detalle de una licitación pública (PLACSP): importe, plazo, lugar, CPV, lotes, órgano y adjudicatarios. |
+
+### Con tu cuenta — tus alertas
+
+Requieren iniciar sesión: tu cliente MCP te lo pedirá la primera vez que uses una.
+
+| Herramienta | Para qué |
+|---|---|
+| **`mis_novedades`** | Lo que han encajado tus alertas en los últimos días. |
+| **`resumen_semana`** | El resumen de la semana de todas tus alertas. |
+| **`listar_mis_alertas`** | Tus alertas: qué vigila cada una, en qué boletines y en qué estado está. |
+| **`crear_alerta`** | Crea una alerta a partir de una descripción en lenguaje natural (te enseña un resumen antes de crearla). |
+| **`editar_alerta`** | Cambia qué vigila una alerta: tema, zona, importes o boletines. |
+| **`pausar_alerta`** · **`reactivar_alerta`** | Deja de recibir avisos de una alerta, o vuelve a recibirlos. |
+| **`borrar_alerta`** | Borra una alerta y su historial (pide confirmación; pausarla es la alternativa reversible). |
+| **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF y entérate de lo que ganan o publican. |
+
+### Con tu cuenta — modo clientes (asesorías y gestorías)
+
+Para quien sigue el dinero público de varios clientes. Requieren tener el modo clientes activado.
+
+| Herramienta | Para qué |
+|---|---|
+| **`listar_clientes`** | Tus clientes, con su descripción y las alertas que nutren a cada uno. |
+| **`listar_entradas`** | El inbox: lo que ha encajado con tus alertas y aún no has archivado bajo ningún cliente. |
+| **`asignar_entrada`** · **`desasignar_entrada`** | Archiva una entrada bajo uno o varios clientes, o deshaz un archivado. |
+| **`descartar_entrada`** | Saca del inbox lo que no interesa a ningún cliente (no borra nada: se recupera desde la web). |
+| **`crear_cliente`** · **`editar_cliente`** | Da de alta un cliente y mantén al día su descripción, que es el contexto del triaje. |
+| **`vincular_alerta`** · **`desvincular_alerta`** | Vincula una alerta a un cliente, o deshaz el vínculo. |
 
 Cada resultado enlaza a su ficha en **[boletinclaro.es](https://boletinclaro.es)**.
 
@@ -156,7 +187,47 @@ Remote server (Streamable HTTP), **no install, no API key**. Just point your MCP
 https://boletinclaro.es/mcp
 ```
 
-Tools (Spanish names, natural-language Spanish queries): `buscar_oportunidades` (grants & tenders matching a company profile), `buscar_boletines` (official-gazette law/announcement search), `buscar_empresa` / `perfil_empresa` (public money received by a company), `detalle_convocatoria` / `detalle_licitacion` (full detail of a grant call / tender). See the connection snippets above.
+## Tools
+
+Spanish tool names, natural-language Spanish queries.
+
+**Anonymous — no login, no API key:**
+
+| Tool | What it does |
+|---|---|
+| `buscar_oportunidades` | Grants and tenders matching a company profile. Filters: type, area (region/province/town), min/max amount, open or historical. |
+| `buscar_boletines` | Laws, decrees and announcements in the official gazettes (BOE, BORME and regional ones: BOJA, DOGC, DOG, BOCM…). |
+| `resumen_boletin` | What a given gazette published on a given day, grouped by subject. |
+| `buscar_empresa` | Find a company's tax ID (NIF) by name, with the total public money it has received. |
+| `perfil_empresa` | How much public money a company (by NIF) has received: grants, contracts, EU R&D and company-registry data, with totals and sectors. |
+| `detalle_convocatoria` | Full detail of a grant call (BDNS): total amount, number of awards and main beneficiaries. |
+| `detalle_licitacion` | Full detail of a public tender (PLACSP): amount, deadline, place, CPV, lots, contracting body and awardees. |
+
+**With a Boletín Claro account** (your client prompts you to sign in the first time):
+
+| Tool | What it does |
+|---|---|
+| `mis_novedades` | What your alerts matched over the last few days. |
+| `resumen_semana` | This week's digest across all your alerts. |
+| `listar_mis_alertas` | Your alerts: what each one watches, in which gazettes, and its status. |
+| `crear_alerta` | Create an alert from a natural-language description (previewed before it is created). |
+| `editar_alerta` | Change what an alert watches: topic, area, amounts or gazettes. |
+| `pausar_alerta` · `reactivar_alerta` | Stop or resume the notifications of one alert. |
+| `borrar_alerta` | Delete an alert and its history (confirmation required). |
+| `vigilar_empresa` | Watch specific companies by name or tax ID. |
+
+**Client mode** (for consultancies tracking public money for several clients):
+
+| Tool | What it does |
+|---|---|
+| `listar_clientes` | Your clients, with their description and the alerts feeding each one. |
+| `listar_entradas` | The inbox: what your alerts matched and you have not filed under any client yet. |
+| `asignar_entrada` · `desasignar_entrada` | File an entry under one or more clients, or undo it. |
+| `descartar_entrada` | Discard what interests no client (recoverable from the web, never deleted). |
+| `crear_cliente` · `editar_cliente` | Create a client and keep its description current — it is the context used to triage. |
+| `vincular_alerta` · `desvincular_alerta` | Link an alert to a client, or unlink it. |
+
+See the connection snippets above.
 
 ---
 
