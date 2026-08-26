@@ -19,6 +19,7 @@ Las respuestas salen de datos reales indexados, no de suposiciones del modelo.
 > ```
 > https://boletinclaro.es/mcp
 > ```
+> **[▶ Añadir a Claude en un clic](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Bolet%C3%ADn+Claro&connectorUrl=https%3A%2F%2Fboletinclaro.es%2Fmcp)** — abre el conector ya rellenado en claude.ai; solo confirmas.
 > Conéctate y míralo en [boletinclaro.es/mcp](https://boletinclaro.es/mcp).
 
 ---
@@ -33,7 +34,9 @@ claude mcp add --transport http boletinclaro https://boletinclaro.es/mcp
 ```
 
 ### Claude Desktop · claude.ai (Connectors)
-Ajustes → **Connectors** → **Add custom connector** → pega `https://boletinclaro.es/mcp`.
+**[Añadir a Claude en un clic](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Bolet%C3%ADn+Claro&connectorUrl=https%3A%2F%2Fboletinclaro.es%2Fmcp)** — el enlace abre «Add custom connector» con el nombre y la URL ya puestos.
+
+A mano: Ajustes → **Connectors** → **Add custom connector** → pega `https://boletinclaro.es/mcp`.
 
 <details>
 <summary>¿Plan sin connectors? Puente con <code>mcp-remote</code></summary>
@@ -196,6 +199,8 @@ Remote server (Streamable HTTP), **no install, no API key**. Just point your MCP
 ```
 https://boletinclaro.es/mcp
 ```
+
+On Claude, **[add it in one click](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Bolet%C3%ADn+Claro&connectorUrl=https%3A%2F%2Fboletinclaro.es%2Fmcp)**.
 
 ## Tools
 
