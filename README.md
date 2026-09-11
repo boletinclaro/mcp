@@ -128,12 +128,13 @@ Requieren iniciar sesión: tu cliente MCP te lo pedirá la primera vez que uses 
 | **`borrar_alerta`** | Borra una alerta y su historial (pide confirmación; pausarla es la alternativa reversible). |
 | **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF y entérate de lo que ganan o publican. |
 
-### Con tu cuenta — notas y plazos
+### Con tu cuenta — entradas, notas y plazos
 
 Lo que apuntes queda también en la ficha de la entrada en boletinclaro.es.
 
 | Herramienta | Para qué |
 |---|---|
+| **`ver_entrada`** | Muestra una entrada tuya por su id (o su enlace `/entradas/…`), esté en el inbox, archivada o descartada: boletín, importe, plazo, lugar, en qué punto está en tu flujo, la alerta que la detectó, los datos de su ficha, el resumen, los enlaces, sus notas y el código BDNS o expediente para seguir con `detalle_convocatoria` / `detalle_licitacion`. |
 | **`anotar_entrada`** | Escribe una nota en una entrada: una gestión hecha, un pendiente o algo que recordar. Con `fecha` se convierte en un vencimiento del calendario y te avisamos por email 7 días antes y el día antes. |
 | **`listar_notas`** | Las notas de una entrada, de la más reciente a la más antigua, con su vencimiento y quién la escribió. |
 | **`borrar_nota`** | Borra una nota tuya (solo el autor puede). |
@@ -231,10 +232,11 @@ Spanish tool names, natural-language Spanish queries.
 | `borrar_alerta` | Delete an alert and its history (confirmation required). |
 | `vigilar_empresa` | Watch specific companies by name or tax ID. |
 
-**Notes and deadlines** (they show up on the entry at boletinclaro.es too):
+**Entries, notes and deadlines** (they show up on the entry at boletinclaro.es too):
 
 | Tool | What it does |
 |---|---|
+| `ver_entrada` | Show one of your entries by id (or its `/entradas/…` link) — in the inbox, archived or discarded: gazette, amount, deadline, place, where it sits in your flow, the alert that matched it, its ficha facts, summary, links and notes, plus the BDNS code or tender id to continue with `detalle_convocatoria` / `detalle_licitacion`. |
 | `anotar_entrada` | Write a note on an entry: something done, something pending, something to remember. With `fecha` it becomes a calendar deadline and you get an email 7 days and 1 day before. |
 | `listar_notas` | An entry's notes, newest first, with their due date and author. |
 | `borrar_nota` | Delete one of your own notes (author only). |
