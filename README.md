@@ -27,6 +27,7 @@ Las respuestas salen de datos reales indexados, no de suposiciones del modelo.
 ## Conexión rápida
 
 Es un servidor **remoto** (Streamable HTTP). No descargas nada: das la URL a tu cliente.
+Todas las herramientas requieren iniciar sesión con una cuenta gratuita de Boletín Claro. Gratis incluye 100 créditos mensuales compartidos con API.
 
 ### Claude Code (CLI)
 ```bash
@@ -99,6 +100,27 @@ npx mcp-remote https://boletinclaro.es/mcp
 
 ---
 
+## Créditos de lectura por workspace
+
+| Plan | Créditos/mes | Llamadas/minuto | Créditos/minuto | Perfiles/mes |
+|---|---:|---:|---:|---:|
+| Gratis | 100 | 20 | 20 | 5 |
+| Pro | 2.000 | 60 | 300 | Sin tope adicional |
+| Mega | 15.000 | 300 | 1.500 | Sin tope adicional |
+
+Trial y Oposiciones tienen el cupo Gratis. El mes y el minuto son naturales UTC; el mes se renueva el día 1 a las 00:00 UTC. Terminar Trial o cambiar de plan no reinicia el consumo. Todas las claves API, usuarios y clientes MCP del workspace comparten el saldo. Gratis permite cinco **llamadas**, aunque se repita el NIF, entre `perfil_empresa` y `GET /v1/empresas/{nif}`.
+
+| Herramientas | Créditos por llamada |
+|---|---:|
+| `buscar_oportunidades`, `buscar_boletines`, `resumen_boletin`, `mis_novedades`, `resumen_semana`, `listar_mis_alertas`, `listar_clientes`, `listar_entradas`, `ver_entrada`, `listar_notas` | 1 |
+| `buscar_empresa`, `perfil_empresa`, `detalle_licitacion`, `detalle_convocatoria` | 5 |
+| `vigilar_empresa` | 5 por nombre que haya que resolver; 0 con NIF |
+| `crear_alerta`, `pausar_alerta`, `reactivar_alerta`, `editar_alerta`, `borrar_alerta`, `asignar_entrada`, `desasignar_entrada`, `descartar_entrada`, `crear_cliente`, `editar_cliente`, `vincular_alerta`, `desvincular_alerta`, `anotar_entrada`, `borrar_nota` | 0 |
+
+Las escrituras mantienen los límites y confirmaciones del plan. Los lotes reservan todo su coste atómicamente antes de ejecutar herramientas. Una admisión consume incluso con caché o fallo posterior; los rechazos no descuentan. Sin login se devuelve 401; con saldo agotado, tope de perfiles o ráfaga excesiva, 429 con `Retry-After`. `X-Quota-Admission-ID` identifica la reserva registrada atómicamente con el débito; en [Ajustes → API](https://boletinclaro.es/ajustes/api) se puede consultar y conciliar el registro mensual de MCP, API y web (actor, operación, coste y saldo antes/después, sin consultas ni claves en claro; retención 400 días desde el cierre del mes). El consumo anterior al inicio del registro se muestra como saldo de apertura. `X-Quota-*` informa del saldo en créditos; `X-RateLimit-Minute-*`, de las llamadas; `X-Credits-Minute-*`, de los créditos por minuto. Si no se puede reservar se devuelve 503 y no se consultan datos. Puede esperar o cambiar de plan en [Planes](https://boletinclaro.es/planes).
+
+`initialize` y `tools/list` siguen públicos. Las rutas de datos `/v1` requieren clave, disponible también en Gratis; su documentación sigue pública. Las fichas públicas leen snapshots: un fallo nunca provoca consultas a BigQuery.
+
 ## Herramientas
 
 ### Sin login — datos públicos
@@ -154,6 +176,10 @@ Para quien sigue el dinero público de varios clientes. Requieren tener el modo 
 
 Cada resultado enlaza a su ficha en **[boletinclaro.es](https://boletinclaro.es)**.
 
+## Límite de consultas
+
+El saldo mensual pertenece al workspace y se comparte entre todas sus claves de API, usuarios y clientes MCP. **Gratis: 100 créditos; Pro: 2.000; Mega: 15.000.** Trial y Oposiciones usan el cupo Gratis. El mes se renueva el día 1 a las 00:00 UTC; cambiar de plan o finalizar Trial no reinicia el consumo. Las lecturas sencillas cuestan 1 crédito; `buscar_empresa`, `perfil_empresa`, `detalle_convocatoria` y `detalle_licitacion`, 5. Gratis admite además **5 llamadas mensuales a perfil de empresa**, compartidas con `GET /v1/empresas/{nif}`, aunque repitas el NIF. Las escrituras MCP cuestan 0; resolver nombres en `vigilar_empresa` cuesta 5 por nombre (con NIF directo, 0). Las investigaciones de empresa que acompañen un borrador consumen por cada búsqueda o perfil. Ráfagas compartidas (llamadas/créditos por minuto): Gratis 20/20, Pro 60/300 y Mega 300/1.500. Los límites devuelven 429 con `Retry-After`; un rechazo no consume. Las admisiones consumen incluso con caché o error posterior. La documentación y el listado de herramientas son públicos y no consumen; todo `tools/call` requiere login.
+
 ## Ejemplos (pregúntale a tu IA)
 
 - *«¿Qué ayudas hay para mi empresa de software en Bilbao?»*
@@ -195,7 +221,9 @@ Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia auto
 
 **Boletín Claro is the MCP server for Spanish public-sector data** — public money (government grants via BDNS, public tenders via PLACSP/TED, EU R&D funding via CORDIS) and the official gazettes (BOE, BORME and regional bulletins: laws, decrees, announcements) — with real indexed data instead of model guesses.
 
-Remote server (Streamable HTTP), **no install, no API key**. Just point your MCP client at:
+Remote server (Streamable HTTP), **no install, no API key**. Reading public data is free with a Boletín Claro account. Your MCP client will prompt you to sign in when you use a tool. Point it at:
+
+Monthly workspace credits are shared across MCP and API: **Free 100, Pro 2,000, Mega 15,000**. Trial and Oposiciones use Free limits. Free also allows five company-profile calls per month, shared with `GET /v1/empresas/{nif}`; repeated tax IDs count again. Simple reads cost 1 credit; company search, profile and detail cost 5. Writes cost 0, except company-name resolution in `vigilar_empresa` (5 per name). Company research attached to a draft consumes credits for each search or profile. Shared burst limits (calls/credits per minute) are Free 20/20, Pro 60/300 and Mega 300/1,500. The calendar month resets on the first day at 00:00 UTC; plan changes and Trial expiry do not refill it. Limits return 429 with `Retry-After`; rejected requests do not consume. Admitted requests consume even on cache hits or subsequent errors. Discovery and documentation remain public; every tool call requires login.
 
 ```
 https://boletinclaro.es/mcp
