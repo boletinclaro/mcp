@@ -147,7 +147,7 @@ Requieren iniciar sesión: tu cliente MCP te lo pedirá la primera vez que uses 
 | **`crear_alerta`** | Crea una alerta a partir de una descripción en lenguaje natural (te enseña un resumen antes de crearla). Puedes fijar los boletines que vigila o quitar alguno, por ejemplo los fondos europeos. |
 | **`editar_alerta`** | Cambia qué vigila una alerta: tema, zona, importes o boletines. |
 | **`pausar_alerta`** · **`reactivar_alerta`** | Deja de recibir avisos de una alerta, o vuelve a recibirlos. |
-| **`borrar_alerta`** | Borra una alerta y su historial (pide confirmación; pausarla es la alternativa reversible). |
+| **`borrar_alerta`** | Borra una alerta y las entradas que solo encontró ella y no has archivado bajo un cliente, con sus notas y documentos (también las descartadas, que ya no podrás recuperar). Lo archivado bajo un cliente se queda, con sus notas y documentos, igual que lo que también encontró otra de tus alertas. Pide confirmación; pausarla es la alternativa reversible. |
 | **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF y entérate de lo que ganan o publican. |
 
 ### Con tu cuenta — entradas, notas y plazos
@@ -257,7 +257,7 @@ Spanish tool names, natural-language Spanish queries.
 | `crear_alerta` | Create an alert from a natural-language description (previewed before it is created). You can pin the gazettes it watches or leave some out, such as EU funding. |
 | `editar_alerta` | Change what an alert watches: topic, area, amounts or gazettes. |
 | `pausar_alerta` · `reactivar_alerta` | Stop or resume the notifications of one alert. |
-| `borrar_alerta` | Delete an alert and its history (confirmation required). |
+| `borrar_alerta` | Delete an alert and the entries only it found that you have not filed under a client, with their notes and documents (discarded ones too, which can then no longer be recovered). Entries filed under a client keep their notes and documents, and entries another of your alerts also found stay (confirmation required). |
 | `vigilar_empresa` | Watch specific companies by name or tax ID. |
 
 **Entries, notes and deadlines** (they show up on the entry at boletinclaro.es too):
