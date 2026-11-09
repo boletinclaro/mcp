@@ -4,7 +4,7 @@
 
 [![MCP](https://img.shields.io/badge/MCP-Streamable_HTTP-1f6feb)](https://modelcontextprotocol.io)
 [![Sin instalación](https://img.shields.io/badge/conexi%C3%B3n-1_clic_(URL)-2ea043)](#conexión-rápida)
-[![Sin registro ni API key](https://img.shields.io/badge/acceso-libre,_sin_registro-2ea043)](#conexión-rápida)
+[![Cuenta gratuita](https://img.shields.io/badge/acceso-cuenta_gratuita-2ea043)](#conexión-rápida)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Web](https://img.shields.io/badge/web-boletinclaro.es-111)](https://boletinclaro.es)
 
@@ -15,12 +15,12 @@ Conecta tu IA (Claude, ChatGPT, Cursor, VS Code, Gemini…) a [**Boletín Claro*
 
 Las respuestas salen de datos reales indexados, no de suposiciones del modelo.
 
-> **Una sola URL, sin instalar nada, sin API key, sin registro:**
+> **Una sola URL, sin instalar nada ni API key; basta una cuenta gratuita de Boletín Claro:**
 > ```
 > https://boletinclaro.es/mcp
 > ```
 > **[▶ Añadir a Claude en un clic](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Bolet%C3%ADn+Claro&connectorUrl=https%3A%2F%2Fboletinclaro.es%2Fmcp)** — abre el conector ya rellenado en claude.ai; solo confirmas.
-> Conéctate y míralo en [boletinclaro.es/mcp](https://boletinclaro.es/mcp).
+> Instrucciones para cada asistente en [boletinclaro.es/conector](https://boletinclaro.es/conector).
 
 ---
 
@@ -105,17 +105,19 @@ npx mcp-remote https://boletinclaro.es/mcp
 | Plan | Créditos/mes | Llamadas/minuto | Créditos/minuto | Perfiles/mes |
 |---|---:|---:|---:|---:|
 | Gratis | 100 | 20 | 20 | 5 |
+| Individual | 500 | 30 | 100 | Sin tope adicional |
 | Pro | 2.000 | 60 | 300 | Sin tope adicional |
 | Mega | 15.000 | 300 | 1.500 | Sin tope adicional |
 
-Trial y Oposiciones tienen el cupo Gratis. El mes y el minuto son naturales UTC; el mes se renueva el día 1 a las 00:00 UTC. Terminar Trial o cambiar de plan no reinicia el consumo. Todas las claves API, usuarios y clientes MCP del workspace comparten el saldo. Gratis permite cinco **llamadas**, aunque se repita el NIF, entre `perfil_empresa` y `GET /v1/empresas/{nif}`.
+Trial y Oposiciones tienen el cupo Gratis. El mes y el minuto son naturales UTC; el mes se renueva el día 1 a las 00:00 UTC. Terminar Trial o cambiar de plan no reinicia el consumo. Todas las claves API, usuarios y clientes MCP del workspace comparten el saldo, salvo en Mega, que tiene dos saldos de 15.000: uno para la web y el conector, y otro para la API. Cada saldo de Mega tiene además un tope de 1.500 créditos al día y de 500 llamadas de 5 créditos al mes, y el de la web y el conector, de 2.000 créditos al mes por persona. Gratis permite cinco **llamadas**, aunque se repita el NIF, entre `perfil_empresa` y `GET /v1/empresas/{nif}`.
 
 | Herramientas | Créditos por llamada |
 |---|---:|
-| `buscar_oportunidades`, `buscar_boletines`, `resumen_boletin`, `mis_novedades`, `resumen_semana`, `listar_mis_alertas`, `listar_clientes`, `listar_entradas`, `ver_entrada`, `listar_notas` | 1 |
+| `buscar_oportunidades`, `buscar_boletines`, `resumen_boletin`, `mis_novedades`, `resumen_semana`, `listar_clientes`, `listar_entradas`, `ver_entrada`, `listar_notas` | 1 |
 | `buscar_empresa`, `perfil_empresa`, `detalle_licitacion`, `detalle_convocatoria` | 5 |
 | `vigilar_empresa` | 5 por nombre que haya que resolver; 0 con NIF |
-| `crear_alerta`, `pausar_alerta`, `reactivar_alerta`, `editar_alerta`, `borrar_alerta`, `asignar_entrada`, `desasignar_entrada`, `descartar_entrada`, `crear_cliente`, `editar_cliente`, `vincular_alerta`, `desvincular_alerta`, `anotar_entrada`, `borrar_nota` | 0 |
+| `expediente` | 1 con `abrir`, `leer_documento` y `cliente`; 5 al prerrellenar `datos_cliente`; el resto, 0 |
+| `listar_mis_alertas`, `crear_alerta`, `pausar_alerta`, `reactivar_alerta`, `editar_alerta`, `borrar_alerta`, `asignar_entrada`, `desasignar_entrada`, `descartar_entrada`, `crear_cliente`, `editar_cliente`, `vincular_alerta`, `desvincular_alerta`, `anotar_entrada`, `borrar_nota` | 0 |
 
 Las escrituras mantienen los límites y confirmaciones del plan. Los lotes reservan todo su coste atómicamente antes de ejecutar herramientas. Una admisión consume incluso con caché o fallo posterior; los rechazos no descuentan. Sin login se devuelve 401; con saldo agotado, tope de perfiles o ráfaga excesiva, 429 con `Retry-After`. `X-Quota-Admission-ID` identifica la reserva registrada atómicamente con el débito; en [Ajustes → API](https://boletinclaro.es/ajustes/api) se puede consultar y conciliar el registro mensual de MCP, API y web (actor, operación, coste y saldo antes/después, sin consultas ni claves en claro; retención 400 días desde el cierre del mes). El consumo anterior al inicio del registro se muestra como saldo de apertura. `X-Quota-*` informa del saldo en créditos; `X-RateLimit-Minute-*`, de las llamadas; `X-Credits-Minute-*`, de los créditos por minuto. Si no se puede reservar se devuelve 503 y no se consultan datos. Puede esperar o cambiar de plan en [Planes](https://boletinclaro.es/planes).
 
@@ -123,7 +125,9 @@ Las escrituras mantienen los límites y confirmaciones del plan. Los lotes reser
 
 ## Herramientas
 
-### Sin login — datos públicos
+Todas requieren iniciar sesión con una cuenta de Boletín Claro (vale la gratuita): tu cliente MCP te lo pedirá la primera vez que uses una.
+
+### Datos públicos
 
 | Herramienta | Para qué |
 |---|---|
@@ -135,9 +139,7 @@ Las escrituras mantienen los límites y confirmaciones del plan. Los lotes reser
 | **`detalle_convocatoria`** | Detalle de una convocatoria de subvenciones (BDNS): importe total, nº de concesiones y principales beneficiarios. |
 | **`detalle_licitacion`** | Detalle de una licitación pública (PLACSP): importe, plazo, lugar, CPV, lotes, órgano y adjudicatarios. |
 
-### Con tu cuenta — tus alertas
-
-Requieren iniciar sesión: tu cliente MCP te lo pedirá la primera vez que uses una.
+### Tus alertas
 
 | Herramienta | Para qué |
 |---|---|
@@ -150,18 +152,18 @@ Requieren iniciar sesión: tu cliente MCP te lo pedirá la primera vez que uses 
 | **`borrar_alerta`** | Borra una alerta y las entradas que solo encontró ella y no has archivado bajo un cliente, con sus notas y documentos (también las descartadas, que ya no podrás recuperar). Lo archivado bajo un cliente se queda, con sus notas y documentos, igual que lo que también encontró otra de tus alertas. Pide confirmación; pausarla es la alternativa reversible. |
 | **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF y entérate de lo que ganan o publican. |
 
-### Con tu cuenta — entradas, notas y plazos
+### Entradas, notas y plazos
 
 Lo que apuntes queda también en la ficha de la entrada en boletinclaro.es.
 
 | Herramienta | Para qué |
 |---|---|
 | **`ver_entrada`** | Muestra una entrada tuya por su id (o su enlace `/entradas/…`), esté en el inbox, archivada o descartada: boletín, importe, plazo, lugar, en qué punto está en tu flujo, la alerta que la detectó, los datos de su ficha, el resumen, los enlaces, sus notas y el código BDNS o expediente para seguir con `detalle_convocatoria` / `detalle_licitacion`. |
-| **`anotar_entrada`** | Escribe una nota en una entrada: una gestión hecha, un pendiente o algo que recordar. Con `fecha` se convierte en un vencimiento del calendario y te avisamos por email 7 días antes y el día antes. |
+| **`anotar_entrada`** | Escribe una nota en una entrada: una gestión hecha, un pendiente o algo que recordar. Con `fecha` se convierte en un vencimiento del calendario y te avisamos por email 15 días, 7 días y el día antes. |
 | **`listar_notas`** | Las notas de una entrada, de la más reciente a la más antigua, con su vencimiento y quién la escribió. |
 | **`borrar_nota`** | Borra una nota tuya (solo el autor puede). |
 
-### Con tu cuenta — modo clientes (asesorías y gestorías)
+### Modo clientes (asesorías y gestorías)
 
 Para quien sigue el dinero público de varios clientes. Requieren tener el modo clientes activado.
 
@@ -174,11 +176,19 @@ Para quien sigue el dinero público de varios clientes. Requieren tener el modo 
 | **`crear_cliente`** · **`editar_cliente`** | Da de alta un cliente y mantén al día su descripción, que es el contexto del triaje. |
 | **`vincular_alerta`** · **`desvincular_alerta`** | Vincula una alerta a un cliente, o deshaz el vínculo. |
 
+### Expediente — preparar una solicitud
+
+Lo que hagas queda en la ficha del expediente en boletinclaro.es, que ve tu equipo.
+
+| Herramienta | Para qué |
+|---|---|
+| **`expediente`** | Prepara una subvención o licitación paso a paso, desde una entrada o una ficha de `buscar_oportunidades`. Una herramienta con acciones: `abrir` (estado y lo que falta), `pasos`, documentos (`guardar_documento`, `leer_documento`, `confirmar_documento`), `estado` (presentada con su registro, o descartada), `plazo` (fijo o legal en días hábiles, que calcula Boletín Claro), `importes`, `pasos_guardados` para reutilizar lo que funcionó, la ficha y los papeles del cliente (`cliente`, `datos_cliente`), y `pedir` / `revisar` para los documentos que suba un tercero con un enlace. Los papeles del cliente sirven en todos sus expedientes; lo común de la convocatoria, en todos sus clientes. Lo que cambia algo importante se enseña antes de aplicarlo. |
+
 Cada resultado enlaza a su ficha en **[boletinclaro.es](https://boletinclaro.es)**.
 
 ## Límite de consultas
 
-El saldo mensual pertenece al workspace y se comparte entre todas sus claves de API, usuarios y clientes MCP. **Gratis: 100 créditos; Pro: 2.000; Mega: 15.000.** Trial y Oposiciones usan el cupo Gratis. El mes se renueva el día 1 a las 00:00 UTC; cambiar de plan o finalizar Trial no reinicia el consumo. Las lecturas sencillas cuestan 1 crédito; `buscar_empresa`, `perfil_empresa`, `detalle_convocatoria` y `detalle_licitacion`, 5. Gratis admite además **5 llamadas mensuales a perfil de empresa**, compartidas con `GET /v1/empresas/{nif}`, aunque repitas el NIF. Las escrituras MCP cuestan 0; resolver nombres en `vigilar_empresa` cuesta 5 por nombre (con NIF directo, 0). Las investigaciones de empresa que acompañen un borrador consumen por cada búsqueda o perfil. Ráfagas compartidas (llamadas/créditos por minuto): Gratis 20/20, Pro 60/300 y Mega 300/1.500. Los límites devuelven 429 con `Retry-After`; un rechazo no consume. Las admisiones consumen incluso con caché o error posterior. La documentación y el listado de herramientas son públicos y no consumen; todo `tools/call` requiere login.
+El saldo mensual pertenece al workspace y se comparte entre todas sus claves de API, usuarios y clientes MCP. **Gratis: 100 créditos; Individual: 500; Pro: 2.000; Mega: 15.000 (dos saldos: web y conector, y API).** Trial y Oposiciones usan el cupo Gratis. El mes se renueva el día 1 a las 00:00 UTC; cambiar de plan o finalizar Trial no reinicia el consumo. Las lecturas sencillas cuestan 1 crédito; `buscar_empresa`, `perfil_empresa`, `detalle_convocatoria` y `detalle_licitacion`, 5. Gratis admite además **5 llamadas mensuales a perfil de empresa**, compartidas con `GET /v1/empresas/{nif}`, aunque repitas el NIF. Las escrituras MCP cuestan 0; resolver nombres en `vigilar_empresa` cuesta 5 por nombre (con NIF directo, 0). Las investigaciones de empresa que acompañen un borrador consumen por cada búsqueda o perfil. Ráfagas compartidas (llamadas/créditos por minuto): Gratis 20/20, Individual 30/100, Pro 60/300 y Mega 300/1.500. Los límites devuelven 429 con `Retry-After`; un rechazo no consume. Las admisiones consumen incluso con caché o error posterior. La documentación y el listado de herramientas son públicos y no consumen; todo `tools/call` requiere login.
 
 ## Ejemplos (pregúntale a tu IA)
 
@@ -202,7 +212,7 @@ El saldo mensual pertenece al workspace y se comparte entre todas sus claves de 
 
 ## Para desarrolladores
 
-Transporte **Streamable HTTP**, **stateless**, **anónimo** (límite ~120 req/min por IP). Prueba el protocolo directo:
+Transporte **Streamable HTTP**, **stateless**, con login OAuth en cada `tools/call`; `initialize` y `tools/list` son públicos. Prueba el protocolo directo:
 
 ```bash
 curl -s -X POST https://boletinclaro.es/mcp \
@@ -213,7 +223,7 @@ curl -s -X POST https://boletinclaro.es/mcp \
 
 ## ¿Quieres que te avisen cuando salga algo nuevo?
 
-Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia automática —que Boletín Claro te avise por email en cuanto se publique una subvención o licitación que te encaje— crea una alerta en **[boletinclaro.es](https://boletinclaro.es)**.
+Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia automática —que Boletín Claro te avise por email en cuanto se publique una subvención o licitación que te encaje— crea una alerta en **[boletinclaro.es](https://boletinclaro.es)** o pídele a tu IA que la cree con `crear_alerta`.
 
 ---
 
@@ -223,7 +233,7 @@ Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia auto
 
 Remote server (Streamable HTTP), **no install, no API key**. Reading public data is free with a Boletín Claro account. Your MCP client will prompt you to sign in when you use a tool. Point it at:
 
-Monthly workspace credits are shared across MCP and API: **Free 100, Pro 2,000, Mega 15,000**. Trial and Oposiciones use Free limits. Free also allows five company-profile calls per month, shared with `GET /v1/empresas/{nif}`; repeated tax IDs count again. Simple reads cost 1 credit; company search, profile and detail cost 5. Writes cost 0, except company-name resolution in `vigilar_empresa` (5 per name). Company research attached to a draft consumes credits for each search or profile. Shared burst limits (calls/credits per minute) are Free 20/20, Pro 60/300 and Mega 300/1,500. The calendar month resets on the first day at 00:00 UTC; plan changes and Trial expiry do not refill it. Limits return 429 with `Retry-After`; rejected requests do not consume. Admitted requests consume even on cache hits or subsequent errors. Discovery and documentation remain public; every tool call requires login.
+Monthly workspace credits are shared across MCP and API: **Free 100, Individual 500, Pro 2,000, Mega 15,000** (Mega keeps two balances of 15,000: web and connector, and API). Trial and Oposiciones use Free limits. Free also allows five company-profile calls per month, shared with `GET /v1/empresas/{nif}`; repeated tax IDs count again. Simple reads cost 1 credit; company search, profile and detail cost 5. Writes and `listar_mis_alertas` cost 0, except company-name resolution in `vigilar_empresa` (5 per name). `expediente` costs 1 to open it, read a document or see the client (`abrir`, `leer_documento`, `cliente`), 5 to prefill client data, and 0 otherwise. Company research attached to a draft consumes credits for each search or profile. Shared burst limits (calls/credits per minute) are Free 20/20, Individual 30/100, Pro 60/300 and Mega 300/1,500. The calendar month resets on the first day at 00:00 UTC; plan changes and Trial expiry do not refill it. Limits return 429 with `Retry-After`; rejected requests do not consume. Admitted requests consume even on cache hits or subsequent errors. Discovery and documentation remain public; every tool call requires login.
 
 ```
 https://boletinclaro.es/mcp
@@ -235,7 +245,9 @@ On Claude, **[add it in one click](https://claude.ai/customize/connectors?modal=
 
 Spanish tool names, natural-language Spanish queries.
 
-**Anonymous — no login, no API key:**
+Every tool requires signing in with a Boletín Claro account (the free one works).
+
+**Public data:**
 
 | Tool | What it does |
 |---|---|
@@ -247,7 +259,7 @@ Spanish tool names, natural-language Spanish queries.
 | `detalle_convocatoria` | Full detail of a grant call (BDNS): total amount, number of awards and main beneficiaries. |
 | `detalle_licitacion` | Full detail of a public tender (PLACSP): amount, deadline, place, CPV, lots, contracting body and awardees. |
 
-**With a Boletín Claro account** (your client prompts you to sign in the first time):
+**Your alerts:**
 
 | Tool | What it does |
 |---|---|
@@ -265,7 +277,7 @@ Spanish tool names, natural-language Spanish queries.
 | Tool | What it does |
 |---|---|
 | `ver_entrada` | Show one of your entries by id (or its `/entradas/…` link) — in the inbox, archived or discarded: gazette, amount, deadline, place, where it sits in your flow, the alert that matched it, its ficha facts, summary, links and notes, plus the BDNS code or tender id to continue with `detalle_convocatoria` / `detalle_licitacion`. |
-| `anotar_entrada` | Write a note on an entry: something done, something pending, something to remember. With `fecha` it becomes a calendar deadline and you get an email 7 days and 1 day before. |
+| `anotar_entrada` | Write a note on an entry: something done, something pending, something to remember. With `fecha` it becomes a calendar deadline and you get an email 15 days, 7 days and 1 day before. |
 | `listar_notas` | An entry's notes, newest first, with their due date and author. |
 | `borrar_nota` | Delete one of your own notes (author only). |
 
@@ -280,6 +292,12 @@ Spanish tool names, natural-language Spanish queries.
 | `crear_cliente` · `editar_cliente` | Create a client and keep its description current — it is the context used to triage. |
 | `vincular_alerta` · `desvincular_alerta` | Link an alert to a client, or unlink it. |
 
+**Expediente** (preparing an application; it shows up on the expediente at boletinclaro.es):
+
+| Tool | What it does |
+|---|---|
+| `expediente` | Prepare a grant or tender application step by step, from an entry or a `buscar_oportunidades` ficha. One tool with actions: `abrir` (status and what is missing), `pasos`, documents (`guardar_documento`, `leer_documento`, `confirmar_documento`), `estado` (submitted with its registry number, or discarded), `plazo` (fixed, or a legal deadline in working days computed by Boletín Claro), `importes`, `pasos_guardados` to reuse what worked, the client's file and papers (`cliente`, `datos_cliente`), and `pedir` / `revisar` for documents a third party uploads through a link. |
+
 See the connection snippets above.
 
 ---
@@ -287,7 +305,7 @@ See the connection snippets above.
 ## Más información
 
 - 🌐 **Web:** [boletinclaro.es](https://boletinclaro.es) — el dinero público español, indexado y resumido con IA.
-- 🔌 **Conector MCP (esta guía, online):** [boletinclaro.es/mcp](https://boletinclaro.es/mcp)
+- 🔌 **Conector MCP (esta guía, online):** [boletinclaro.es/conector](https://boletinclaro.es/conector)
 - 📰 **Conecta tu IA al BOE:** [boletinclaro.es/mcp-boe](https://boletinclaro.es/mcp-boe)
 - 💶 **Buscar subvenciones con ChatGPT o Claude:** [boletinclaro.es/subvenciones-con-chatgpt](https://boletinclaro.es/subvenciones-con-chatgpt)
 - 📋 **Buscar licitaciones con ChatGPT o Claude:** [boletinclaro.es/licitaciones-con-chatgpt](https://boletinclaro.es/licitaciones-con-chatgpt)
