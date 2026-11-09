@@ -183,7 +183,7 @@ Lo que haga queda en la ficha del expediente en boletinclaro.es, que ve su equip
 |---|---|
 | **`expediente`** | Lee el expediente de una subvención o licitación: estado, lo que falta, pasos, documentos, plazos, importes e instrucciones para seguir. Sin entrada, la ficha del cliente, sus papeles y sus expedientes. Solo lee. |
 | **`leer_documento`** | Lee un documento del expediente (también los PDF y Word subidos) o uno oficial por su enlace. |
-| **`guardar_documento`** · **`confirmar_documento`** | Guarda requisitos, encaje y borradores en markdown o CSV (de la convocatoria, del cliente o de esta solicitud), y marca la versión que el usuario da por buena. Un borrador se descarga en Word desde la web. |
+| **`guardar_documento`** · **`confirmar_documento`** | Guarda requisitos, encaje y borradores en markdown o CSV (de la convocatoria, del cliente o de esta solicitud), y marca la versión que el usuario da por buena. Un borrador se descarga en Word desde la web. Con `archivo`, sube un PDF, una imagen o un Word de su equipo: da un comando que la IA ejecuta en su terminal (Claude Code, Claude Desktop). |
 | **`pasos`** · **`pasos_guardados`** | Los pasos del expediente por fases, y los guardados de otros expedientes para reutilizar lo que funcionó. |
 | **`plazo`** | Un plazo fijo, o uno legal en días hábiles que calcula Boletín Claro con los calendarios oficiales. |
 | **`importes`** · **`cambiar_estado`** | Lo solicitado y lo concedido (por lote en una licitación), y el estado: presentada con su registro, concedida, descartada… |
@@ -301,7 +301,7 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 | Tool | What it does |
 |---|---|
 | `expediente` | Read a grant or tender application: status, what is missing, steps, documents, deadlines, amounts and how to go on; without an entry, the client's file, papers and applications. Read-only. |
-| `leer_documento` · `guardar_documento` · `confirmar_documento` | Read a document (uploaded PDFs and Word files too, or an official one by its link), save requirements, fit and drafts in markdown or CSV, and mark the version the user approved. |
+| `leer_documento` · `guardar_documento` · `confirmar_documento` | Read a document (uploaded PDFs and Word files too, or an official one by its link), save requirements, fit and drafts in markdown or CSV, and mark the version the user approved. With `archivo`, upload a PDF, image or Word file from the user's computer: it gives a command the AI runs in their terminal (Claude Code, Claude Desktop). |
 | `pasos` · `pasos_guardados` | The application's steps by phase, and the steps saved from other applications to reuse what worked. |
 | `plazo` · `importes` · `cambiar_estado` | A fixed deadline or a legal one in working days computed by Boletín Claro; the amounts asked for and granted (per lot in a tender); the status (submitted with its registry number, granted, discarded…). |
 | `pedir_documentos` · `revisar_documento` | A link for a third party to upload documents and the review of what arrives. |
