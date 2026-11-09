@@ -113,7 +113,7 @@ Trial y Oposiciones tienen el cupo Gratis. El mes y el minuto son naturales UTC;
 
 | Herramientas | Créditos por llamada |
 |---|---:|
-| `buscar_oportunidades`, `buscar_boletines`, `resumen_boletin`, `mis_novedades`, `resumen_semana`, `listar_clientes`, `listar_entradas`, `ver_entrada`, `listar_notas` | 1 |
+| `buscar_oportunidades`, `buscar_boletines`, `resumen_boletin`, `mis_novedades`, `listar_clientes`, `listar_entradas`, `ver_entrada`, `listar_notas` | 1 |
 | `buscar_empresa`, `perfil_empresa`, `detalle_oportunidad` | 5 |
 | `vigilar_empresa` | 5 por nombre que haya que resolver; 0 con NIF |
 | `expediente`, `leer_documento` | 1 |
@@ -144,8 +144,7 @@ Todas requieren iniciar sesión con una cuenta de Boletín Claro (vale la gratui
 
 | Herramienta | Para qué |
 |---|---|
-| **`mis_novedades`** | Lo que han encajado sus alertas en los últimos días. |
-| **`resumen_semana`** | El resumen de la semana de todas sus alertas. |
+| **`mis_novedades`** | Lo que han encajado sus alertas en los últimos días (por defecto, la última semana). |
 | **`listar_mis_alertas`** | Sus alertas: qué vigila cada una, en qué boletines y en qué estado está. |
 | **`crear_alerta`** | Crea una alerta a partir de una descripción en lenguaje natural (enseña un resumen antes de crearla). Se pueden fijar los boletines que vigila o quitar alguno, por ejemplo los fondos europeos. |
 | **`editar_alerta`** | Cambia una alerta: qué vigila (tema, zona, importes o boletines), adónde avisa, su nombre, si está activa (pausar o reactivar) y a qué clientes nutre. |
@@ -269,8 +268,7 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 
 | Tool | What it does |
 |---|---|
-| `mis_novedades` | What your alerts matched over the last few days. |
-| `resumen_semana` | This week's digest across all your alerts. |
+| `mis_novedades` | What your alerts matched over the last few days (the last week by default). |
 | `listar_mis_alertas` | Your alerts: what each one watches, in which gazettes, and its status. |
 | `crear_alerta` | Create an alert from a natural-language description (previewed before it is created). You can pin the gazettes it watches or leave some out, such as EU funding. |
 | `editar_alerta` | Change an alert: what it watches (topic, area, amounts or gazettes), where it notifies, its name, whether it is active (pause or resume) and which clients it feeds. |
