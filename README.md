@@ -1,6 +1,6 @@
 # Boletín Claro — el MCP de los datos públicos de España
 
-**Datos públicos españoles para tu IA: el dinero público —subvenciones y licitaciones— y todos los boletines oficiales (BOE, BORME, autonómicos). Con datos reales, no suposiciones.**
+**Datos públicos españoles para su IA: el dinero público —subvenciones y licitaciones— y todos los boletines oficiales (BOE, BORME, autonómicos). Con datos reales, no suposiciones.**
 
 [![MCP](https://img.shields.io/badge/MCP-Streamable_HTTP-1f6feb)](https://modelcontextprotocol.io)
 [![Sin instalación](https://img.shields.io/badge/conexi%C3%B3n-1_clic_(URL)-2ea043)](#conexión-rápida)
@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Web](https://img.shields.io/badge/web-boletinclaro.es-111)](https://boletinclaro.es)
 
-Conecta tu IA (Claude, ChatGPT, Cursor, VS Code, Gemini…) a [**Boletín Claro**](https://boletinclaro.es) y pregúntale en lenguaje natural. Dos superficies, una sola conexión:
+Conecte su IA (Claude, ChatGPT, Cursor, VS Code, Gemini…) a [**Boletín Claro**](https://boletinclaro.es) y pregúntele en lenguaje natural. Dos superficies, una sola conexión:
 
 - 💶 **Dinero público** — subvenciones, licitaciones, ayudas y a quién se las llevan.
 - 📰 **Boletines oficiales** — leyes, decretos, anuncios y normativa del BOE, el BORME y los boletines autonómicos.
@@ -19,14 +19,14 @@ Las respuestas salen de datos reales indexados, no de suposiciones del modelo.
 > ```
 > https://boletinclaro.es/mcp
 > ```
-> **[▶ Añadir a Claude en un clic](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Bolet%C3%ADn+Claro&connectorUrl=https%3A%2F%2Fboletinclaro.es%2Fmcp)** — abre el conector ya rellenado en claude.ai; solo confirmas.
+> **[▶ Añadir a Claude en un clic](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Bolet%C3%ADn+Claro&connectorUrl=https%3A%2F%2Fboletinclaro.es%2Fmcp)** — abre el conector ya rellenado en claude.ai; solo tiene que confirmar.
 > Instrucciones para cada asistente en [boletinclaro.es/conector](https://boletinclaro.es/conector).
 
 ---
 
 ## Conexión rápida
 
-Es un servidor **remoto** (Streamable HTTP). No descargas nada: das la URL a tu cliente.
+Es un servidor **remoto** (Streamable HTTP). No se descarga nada: basta con dar la URL a su cliente.
 Todas las herramientas requieren iniciar sesión con una cuenta gratuita de Boletín Claro. Gratis incluye 100 créditos mensuales compartidos con API.
 
 ### Claude Code (CLI)
@@ -37,7 +37,7 @@ claude mcp add --transport http boletinclaro https://boletinclaro.es/mcp
 ### Claude Desktop · claude.ai (Connectors)
 **[Añadir a Claude en un clic](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Bolet%C3%ADn+Claro&connectorUrl=https%3A%2F%2Fboletinclaro.es%2Fmcp)** — el enlace abre «Add custom connector» con el nombre y la URL ya puestos.
 
-A mano: Ajustes → **Connectors** → **Add custom connector** → pega `https://boletinclaro.es/mcp`.
+A mano: Ajustes → **Connectors** → **Add custom connector** → pegue `https://boletinclaro.es/mcp`.
 
 <details>
 <summary>¿Plan sin connectors? Puente con <code>mcp-remote</code></summary>
@@ -81,7 +81,7 @@ En `.vscode/mcp.json`:
 ```
 
 ### ChatGPT
-Modo desarrollador → Ajustes → **Connectors** → crea un conector y pega `https://boletinclaro.es/mcp`.
+Modo desarrollador → Ajustes → **Connectors** → cree un conector y pegue `https://boletinclaro.es/mcp`.
 
 ### Gemini CLI y otros clientes
 ```json
@@ -93,7 +93,7 @@ Modo desarrollador → Ajustes → **Connectors** → crea un conector y pega `h
   }
 }
 ```
-Cualquier cliente compatible con MCP remoto sirve. Si el tuyo solo soporta stdio, usa el puente universal:
+Cualquier cliente compatible con MCP remoto sirve. Si el suyo solo admite stdio, use el puente universal:
 ```bash
 npx mcp-remote https://boletinclaro.es/mcp
 ```
@@ -127,7 +127,7 @@ Las escrituras mantienen los límites y confirmaciones del plan. Los lotes reser
 
 ## Herramientas
 
-Todas requieren iniciar sesión con una cuenta de Boletín Claro (vale la gratuita): tu cliente MCP te lo pedirá la primera vez que uses una.
+Todas requieren iniciar sesión con una cuenta de Boletín Claro (vale la gratuita): su cliente MCP se lo pedirá la primera vez que use una.
 
 ### Datos públicos
 
@@ -140,28 +140,28 @@ Todas requieren iniciar sesión con una cuenta de Boletín Claro (vale la gratui
 | **`perfil_empresa`** | Cuánto dinero público ha recibido una empresa (por NIF): subvenciones, contratos, I+D europeo y mercantil, con totales y sectores. |
 | **`detalle_oportunidad`** | Detalle de una subvención (BDNS: importe total, concesiones y principales beneficiarios) o de una licitación (PLACSP: importe, plazo, lugar, CPV, lotes, órgano y adjudicatarios), por el enlace de su ficha. |
 
-### Tus alertas
+### Sus alertas
 
 | Herramienta | Para qué |
 |---|---|
-| **`mis_novedades`** | Lo que han encajado tus alertas en los últimos días. |
-| **`resumen_semana`** | El resumen de la semana de todas tus alertas. |
-| **`listar_mis_alertas`** | Tus alertas: qué vigila cada una, en qué boletines y en qué estado está. |
-| **`crear_alerta`** | Crea una alerta a partir de una descripción en lenguaje natural (te enseña un resumen antes de crearla). Puedes fijar los boletines que vigila o quitar alguno, por ejemplo los fondos europeos. |
+| **`mis_novedades`** | Lo que han encajado sus alertas en los últimos días. |
+| **`resumen_semana`** | El resumen de la semana de todas sus alertas. |
+| **`listar_mis_alertas`** | Sus alertas: qué vigila cada una, en qué boletines y en qué estado está. |
+| **`crear_alerta`** | Crea una alerta a partir de una descripción en lenguaje natural (enseña un resumen antes de crearla). Se pueden fijar los boletines que vigila o quitar alguno, por ejemplo los fondos europeos. |
 | **`editar_alerta`** | Cambia una alerta: qué vigila (tema, zona, importes o boletines), adónde avisa, su nombre, si está activa (pausar o reactivar) y a qué clientes nutre. |
-| **`borrar_alerta`** | Borra una alerta y las entradas que solo encontró ella y no has archivado bajo un cliente, con sus notas y documentos (también las descartadas, que ya no podrás recuperar). Lo archivado bajo un cliente se queda, con sus notas y documentos, igual que lo que también encontró otra de tus alertas. Pide confirmación; pausarla es la alternativa reversible. |
-| **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF y entérate de lo que ganan o publican. |
+| **`borrar_alerta`** | Borra una alerta y las entradas que solo encontró ella y no ha archivado bajo un cliente, con sus notas y documentos (también las descartadas, que ya no podrá recuperar). Lo archivado bajo un cliente se queda, con sus notas y documentos, igual que lo que también encontró otra de sus alertas. Pide confirmación; pausarla es la alternativa reversible. |
+| **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF para saber lo que ganan o publican. |
 
 ### Entradas, notas y plazos
 
-Lo que apuntes queda también en la ficha de la entrada en boletinclaro.es.
+Lo que apunte queda también en la ficha de la entrada en boletinclaro.es.
 
 | Herramienta | Para qué |
 |---|---|
-| **`ver_entrada`** | Muestra una entrada tuya por su id (o su enlace `/entradas/…`), esté en el inbox, archivada o descartada: boletín, importe, plazo, lugar, en qué punto está en tu flujo, la alerta que la detectó, los datos de su ficha, el resumen, los enlaces, sus notas y el código BDNS o expediente para seguir con `detalle_oportunidad`. |
-| **`anotar_entrada`** | Escribe una nota en una entrada: una gestión hecha, un pendiente o algo que recordar. Con `fecha` se convierte en un vencimiento del calendario y te avisamos por email 15 días, 7 días y el día antes. |
+| **`ver_entrada`** | Muestra una entrada suya por su id (o su enlace `/entradas/…`), esté en el inbox, archivada o descartada: boletín, importe, plazo, lugar, en qué punto está en su flujo, la alerta que la detectó, los datos de su ficha, el resumen, los enlaces, sus notas y el código BDNS o expediente para seguir con `detalle_oportunidad`. |
+| **`anotar_entrada`** | Escribe una nota en una entrada: una gestión hecha, un pendiente o algo que recordar. Con `fecha` se convierte en un vencimiento del calendario y le avisamos por email 15 días, 7 días y el día antes. |
 | **`listar_notas`** | Las notas de una entrada, de la más reciente a la más antigua, con su vencimiento y quién la escribió. |
-| **`borrar_nota`** | Borra una nota tuya (solo el autor puede). |
+| **`borrar_nota`** | Borra una nota suya (solo el autor puede). |
 
 ### Modo clientes (asesorías y gestorías)
 
@@ -169,15 +169,15 @@ Para quien sigue el dinero público de varios clientes. Requieren tener el modo 
 
 | Herramienta | Para qué |
 |---|---|
-| **`listar_clientes`** | Tus clientes, con su descripción y las alertas que nutren a cada uno. |
-| **`listar_entradas`** | El inbox: lo que ha encajado con tus alertas y aún no has archivado bajo ningún cliente. Se filtra por alerta, cliente, veredicto, fecha de llegada, importe o texto del título, admite una línea por entrada y pagina con cursor. |
-| **`asignar_entrada`** · **`desasignar_entrada`** | Archiva una entrada bajo uno o varios clientes, o deshaz un archivado. |
+| **`listar_clientes`** | Sus clientes, con su descripción y las alertas que nutren a cada uno. |
+| **`listar_entradas`** | El inbox: lo que ha encajado con sus alertas y aún no ha archivado bajo ningún cliente. Se filtra por alerta, cliente, veredicto, fecha de llegada, importe o texto del título, admite una línea por entrada y pagina con cursor. |
+| **`asignar_entrada`** · **`desasignar_entrada`** | Archiva una entrada bajo uno o varios clientes, o deshace un archivado. |
 | **`descartar_entrada`** | Saca del inbox lo que no interesa a ningún cliente (no borra nada: se recupera desde la web). Por ids o en bloque con los filtros de `listar_entradas`, siempre con vista previa antes. |
-| **`guardar_cliente`** | Da de alta un cliente o cámbialo: su descripción, que es el contexto del triaje, su NIF y su ficha, que se puede completar del Registro Mercantil. Sin cliente, la ficha de tu entidad. |
+| **`guardar_cliente`** | Da de alta un cliente o lo cambia: su descripción, que es el contexto del triaje, su NIF y su ficha, que se puede completar del Registro Mercantil. Sin cliente, la ficha de su entidad. |
 
 ### Expediente — preparar una solicitud
 
-Lo que hagas queda en la ficha del expediente en boletinclaro.es, que ve tu equipo.
+Lo que haga queda en la ficha del expediente en boletinclaro.es, que ve su equipo.
 
 | Herramienta | Para qué |
 |---|---|
@@ -197,7 +197,7 @@ Cada resultado enlaza a su ficha en **[boletinclaro.es](https://boletinclaro.es)
 
 El saldo mensual pertenece al workspace y se comparte entre todas sus claves de API, usuarios y clientes MCP. **Gratis: 100 créditos; Individual: 500; Pro: 2.000; Mega: 15.000 (dos saldos: web y conector, y API).** Trial y Oposiciones usan el cupo Gratis. El mes se renueva el día 1 a las 00:00 UTC; cambiar de plan o finalizar Trial no reinicia el consumo. Las lecturas sencillas cuestan 1 crédito; `buscar_empresa`, `perfil_empresa` y `detalle_oportunidad`, 5. Gratis admite además **5 llamadas mensuales a perfil de empresa**, compartidas con `GET /v1/empresas/{nif}`, aunque repitas el NIF. Las escrituras MCP cuestan 0; resolver nombres en `vigilar_empresa` cuesta 5 por nombre (con NIF directo, 0). Las investigaciones de empresa que acompañen un borrador consumen por cada búsqueda o perfil. Ráfagas compartidas (llamadas/créditos por minuto): Gratis 20/20, Individual 30/100, Pro 60/300 y Mega 300/1.500. Los límites devuelven 429 con `Retry-After`; un rechazo no consume. Las admisiones consumen incluso con caché o error posterior. La documentación y el listado de herramientas son públicos y no consumen; todo `tools/call` requiere login.
 
-## Ejemplos (pregúntale a tu IA)
+## Ejemplos (pregúntele a su IA)
 
 - *«¿Qué ayudas hay para mi empresa de software en Bilbao?»*
 - *«¿Qué licitaciones de catering de menos de 200.000 € hay abiertas en Madrid?»*
@@ -219,7 +219,7 @@ El saldo mensual pertenece al workspace y se comparte entre todas sus claves de 
 
 ## Para desarrolladores
 
-Transporte **Streamable HTTP**, **stateless**, con login OAuth en cada `tools/call`; `initialize` y `tools/list` son públicos. Prueba el protocolo directo:
+Transporte **Streamable HTTP**, **stateless**, con login OAuth en cada `tools/call`; `initialize` y `tools/list` son públicos. Pruebe el protocolo directamente:
 
 ```bash
 curl -s -X POST https://boletinclaro.es/mcp \
@@ -228,9 +228,9 @@ curl -s -X POST https://boletinclaro.es/mcp \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'
 ```
 
-## ¿Quieres que te avisen cuando salga algo nuevo?
+## ¿Quiere que le avisen cuando salga algo nuevo?
 
-Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia automática —que Boletín Claro te avise por email en cuanto se publique una subvención o licitación que te encaje— crea una alerta en **[boletinclaro.es](https://boletinclaro.es)** o pídele a tu IA que la cree con `crear_alerta`.
+Estas herramientas son para **búsquedas puntuales**. Si quiere vigilancia automática —que Boletín Claro le avise por email en cuanto se publique una subvención o licitación que le encaje— cree una alerta en **[boletinclaro.es](https://boletinclaro.es)** o pídale a su IA que la cree con `crear_alerta`.
 
 ---
 
