@@ -116,7 +116,9 @@ Trial y Oposiciones tienen el cupo Gratis. El mes y el minuto son naturales UTC;
 | `buscar_oportunidades`, `buscar_boletines`, `resumen_boletin`, `mis_novedades`, `resumen_semana`, `listar_clientes`, `listar_entradas`, `ver_entrada`, `listar_notas` | 1 |
 | `buscar_empresa`, `perfil_empresa`, `detalle_licitacion`, `detalle_convocatoria` | 5 |
 | `vigilar_empresa` | 5 por nombre que haya que resolver; 0 con NIF |
-| `expediente` | 1 con `abrir`, `leer_documento` y `cliente`; 5 al prerrellenar `datos_cliente`; el resto, 0 |
+| `expediente`, `leer_documento` | 1 |
+| `guardar_ficha` | 5 con `prerrellenar`; 0 sin él |
+| `guardar_documento`, `confirmar_documento`, `revisar_documento`, `pasos`, `pasos_guardados`, `plazo`, `importes`, `cambiar_estado`, `pedir_documentos` | 0 |
 | `listar_mis_alertas`, `crear_alerta`, `pausar_alerta`, `reactivar_alerta`, `editar_alerta`, `borrar_alerta`, `asignar_entrada`, `desasignar_entrada`, `descartar_entrada`, `crear_cliente`, `editar_cliente`, `vincular_alerta`, `desvincular_alerta`, `anotar_entrada`, `borrar_nota` | 0 |
 
 Las escrituras mantienen los límites y confirmaciones del plan. Los lotes reservan todo su coste atómicamente antes de ejecutar herramientas. Una admisión consume incluso con caché o fallo posterior; los rechazos no descuentan. Sin login se devuelve 401; con saldo agotado, tope de perfiles o ráfaga excesiva, 429 con `Retry-After`. `X-Quota-Admission-ID` identifica la reserva registrada atómicamente con el débito; en [Ajustes → API](https://boletinclaro.es/ajustes/api) se puede consultar y conciliar el registro mensual de MCP, API y web (actor, operación, coste y saldo antes/después, sin consultas ni claves en claro; retención 400 días desde el cierre del mes). El consumo anterior al inicio del registro se muestra como saldo de apertura. `X-Quota-*` informa del saldo en créditos; `X-RateLimit-Minute-*`, de las llamadas; `X-Credits-Minute-*`, de los créditos por minuto. Si no se puede reservar se devuelve 503 y no se consultan datos. Puede esperar o cambiar de plan en [Planes](https://boletinclaro.es/planes).
@@ -182,7 +184,16 @@ Lo que hagas queda en la ficha del expediente en boletinclaro.es, que ve tu equi
 
 | Herramienta | Para qué |
 |---|---|
-| **`expediente`** | Prepara una subvención o licitación paso a paso, desde una entrada o una ficha de `buscar_oportunidades`. Una herramienta con acciones: `abrir` (estado y lo que falta), `pasos`, documentos (`guardar_documento`, `leer_documento`, `confirmar_documento`), `estado` (presentada con su registro, o descartada), `plazo` (fijo o legal en días hábiles, que calcula Boletín Claro), `importes`, `pasos_guardados` para reutilizar lo que funcionó, la ficha y los papeles del cliente (`cliente`, `datos_cliente`), y `pedir` / `revisar` para los documentos que suba un tercero con un enlace. Los papeles del cliente sirven en todos sus expedientes; lo común de la convocatoria, en todos sus clientes. Lo que cambia algo importante se enseña antes de aplicarlo. |
+| **`expediente`** | Lee el expediente de una subvención o licitación: estado, lo que falta, pasos, documentos, plazos, importes e instrucciones para seguir. Sin entrada, la ficha del cliente, sus papeles y sus expedientes. Solo lee. |
+| **`leer_documento`** | Lee un documento del expediente (también los PDF y Word subidos) o uno oficial por su enlace. |
+| **`guardar_documento`** · **`confirmar_documento`** | Guarda requisitos, encaje y borradores en markdown o CSV (de la convocatoria, del cliente o de esta solicitud), y marca la versión que el usuario da por buena. Un borrador se descarga en Word desde la web. |
+| **`pasos`** · **`pasos_guardados`** | Los pasos del expediente por fases, y los guardados de otros expedientes para reutilizar lo que funcionó. |
+| **`plazo`** | Un plazo fijo, o uno legal en días hábiles que calcula Boletín Claro con los calendarios oficiales. |
+| **`importes`** · **`cambiar_estado`** | Lo solicitado y lo concedido (por lote en una licitación), y el estado: presentada con su registro, concedida, descartada… |
+| **`pedir_documentos`** · **`revisar_documento`** | Un enlace para que un tercero suba documentos, y la revisión de lo que llega. |
+| **`guardar_ficha`** | Los datos de la ficha del cliente o de tu entidad, que se pueden completar del Registro Mercantil por el NIF. |
+
+Lo que cambia algo importante se enseña antes de aplicarlo. Los papeles del cliente sirven en todos sus expedientes; lo común de la convocatoria, en todos sus clientes.
 
 Cada resultado enlaza a su ficha en **[boletinclaro.es](https://boletinclaro.es)**.
 
@@ -233,7 +244,7 @@ Estas herramientas son para **búsquedas puntuales**. Si quieres vigilancia auto
 
 Remote server (Streamable HTTP), **no install, no API key**. Reading public data is free with a Boletín Claro account. Your MCP client will prompt you to sign in when you use a tool. Point it at:
 
-Monthly workspace credits are shared across MCP and API: **Free 100, Individual 500, Pro 2,000, Mega 15,000** (Mega keeps two balances of 15,000: web and connector, and API). Trial and Oposiciones use Free limits. Free also allows five company-profile calls per month, shared with `GET /v1/empresas/{nif}`; repeated tax IDs count again. Simple reads cost 1 credit; company search, profile and detail cost 5. Writes and `listar_mis_alertas` cost 0, except company-name resolution in `vigilar_empresa` (5 per name). `expediente` costs 1 to open it, read a document or see the client (`abrir`, `leer_documento`, `cliente`), 5 to prefill client data, and 0 otherwise. Company research attached to a draft consumes credits for each search or profile. Shared burst limits (calls/credits per minute) are Free 20/20, Individual 30/100, Pro 60/300 and Mega 300/1,500. The calendar month resets on the first day at 00:00 UTC; plan changes and Trial expiry do not refill it. Limits return 429 with `Retry-After`; rejected requests do not consume. Admitted requests consume even on cache hits or subsequent errors. Discovery and documentation remain public; every tool call requires login.
+Monthly workspace credits are shared across MCP and API: **Free 100, Individual 500, Pro 2,000, Mega 15,000** (Mega keeps two balances of 15,000: web and connector, and API). Trial and Oposiciones use Free limits. Free also allows five company-profile calls per month, shared with `GET /v1/empresas/{nif}`; repeated tax IDs count again. Simple reads cost 1 credit; company search, profile and detail cost 5. Writes and `listar_mis_alertas` cost 0, except company-name resolution in `vigilar_empresa` (5 per name). `expediente` and `leer_documento` cost 1, `guardar_ficha` 5 when it prefills from the company registry, and the other expediente tools 0. Company research attached to a draft consumes credits for each search or profile. Shared burst limits (calls/credits per minute) are Free 20/20, Individual 30/100, Pro 60/300 and Mega 300/1,500. The calendar month resets on the first day at 00:00 UTC; plan changes and Trial expiry do not refill it. Limits return 429 with `Retry-After`; rejected requests do not consume. Admitted requests consume even on cache hits or subsequent errors. Discovery and documentation remain public; every tool call requires login.
 
 ```
 https://boletinclaro.es/mcp
@@ -296,7 +307,11 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 
 | Tool | What it does |
 |---|---|
-| `expediente` | Prepare a grant or tender application step by step, from an entry or a `buscar_oportunidades` ficha. One tool with actions: `abrir` (status and what is missing), `pasos`, documents (`guardar_documento`, `leer_documento`, `confirmar_documento`), `estado` (submitted with its registry number, or discarded), `plazo` (fixed, or a legal deadline in working days computed by Boletín Claro), `importes`, `pasos_guardados` to reuse what worked, the client's file and papers (`cliente`, `datos_cliente`), and `pedir` / `revisar` for documents a third party uploads through a link. |
+| `expediente` | Read a grant or tender application: status, what is missing, steps, documents, deadlines, amounts and how to go on; without an entry, the client's file, papers and applications. Read-only. |
+| `leer_documento` · `guardar_documento` · `confirmar_documento` | Read a document (uploaded PDFs and Word files too, or an official one by its link), save requirements, fit and drafts in markdown or CSV, and mark the version the user approved. |
+| `pasos` · `pasos_guardados` | The application's steps by phase, and the steps saved from other applications to reuse what worked. |
+| `plazo` · `importes` · `cambiar_estado` | A fixed deadline or a legal one in working days computed by Boletín Claro; the amounts asked for and granted (per lot in a tender); the status (submitted with its registry number, granted, discarded…). |
+| `pedir_documentos` · `revisar_documento` · `guardar_ficha` | A link for a third party to upload documents and the review of what arrives; the client's or your own entity's file, which can be prefilled from the company registry. |
 
 See the connection snippets above.
 
