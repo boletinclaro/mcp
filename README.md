@@ -158,7 +158,7 @@ Lo que apuntes queda también en la ficha de la entrada en boletinclaro.es.
 
 | Herramienta | Para qué |
 |---|---|
-| **`ver_entrada`** | Muestra una entrada tuya por su id (o su enlace `/entradas/…`), esté en el inbox, archivada o descartada: boletín, importe, plazo, lugar, en qué punto está en tu flujo, la alerta que la detectó, los datos de su ficha, el resumen, los enlaces, sus notas y el código BDNS o expediente para seguir con `detalle_convocatoria` / `detalle_licitacion`. |
+| **`ver_entrada`** | Muestra una entrada tuya por su id (o su enlace `/entradas/…`), esté en el inbox, archivada o descartada: boletín, importe, plazo, lugar, en qué punto está en tu flujo, la alerta que la detectó, los datos de su ficha, el resumen, los enlaces, sus notas y el código BDNS o expediente para seguir con `detalle_oportunidad`. |
 | **`anotar_entrada`** | Escribe una nota en una entrada: una gestión hecha, un pendiente o algo que recordar. Con `fecha` se convierte en un vencimiento del calendario y te avisamos por email 15 días, 7 días y el día antes. |
 | **`listar_notas`** | Las notas de una entrada, de la más reciente a la más antigua, con su vencimiento y quién la escribió. |
 | **`borrar_nota`** | Borra una nota tuya (solo el autor puede). |
@@ -195,7 +195,7 @@ Cada resultado enlaza a su ficha en **[boletinclaro.es](https://boletinclaro.es)
 
 ## Límite de consultas
 
-El saldo mensual pertenece al workspace y se comparte entre todas sus claves de API, usuarios y clientes MCP. **Gratis: 100 créditos; Individual: 500; Pro: 2.000; Mega: 15.000 (dos saldos: web y conector, y API).** Trial y Oposiciones usan el cupo Gratis. El mes se renueva el día 1 a las 00:00 UTC; cambiar de plan o finalizar Trial no reinicia el consumo. Las lecturas sencillas cuestan 1 crédito; `buscar_empresa`, `perfil_empresa`, `detalle_convocatoria` y `detalle_licitacion`, 5. Gratis admite además **5 llamadas mensuales a perfil de empresa**, compartidas con `GET /v1/empresas/{nif}`, aunque repitas el NIF. Las escrituras MCP cuestan 0; resolver nombres en `vigilar_empresa` cuesta 5 por nombre (con NIF directo, 0). Las investigaciones de empresa que acompañen un borrador consumen por cada búsqueda o perfil. Ráfagas compartidas (llamadas/créditos por minuto): Gratis 20/20, Individual 30/100, Pro 60/300 y Mega 300/1.500. Los límites devuelven 429 con `Retry-After`; un rechazo no consume. Las admisiones consumen incluso con caché o error posterior. La documentación y el listado de herramientas son públicos y no consumen; todo `tools/call` requiere login.
+El saldo mensual pertenece al workspace y se comparte entre todas sus claves de API, usuarios y clientes MCP. **Gratis: 100 créditos; Individual: 500; Pro: 2.000; Mega: 15.000 (dos saldos: web y conector, y API).** Trial y Oposiciones usan el cupo Gratis. El mes se renueva el día 1 a las 00:00 UTC; cambiar de plan o finalizar Trial no reinicia el consumo. Las lecturas sencillas cuestan 1 crédito; `buscar_empresa`, `perfil_empresa` y `detalle_oportunidad`, 5. Gratis admite además **5 llamadas mensuales a perfil de empresa**, compartidas con `GET /v1/empresas/{nif}`, aunque repitas el NIF. Las escrituras MCP cuestan 0; resolver nombres en `vigilar_empresa` cuesta 5 por nombre (con NIF directo, 0). Las investigaciones de empresa que acompañen un borrador consumen por cada búsqueda o perfil. Ráfagas compartidas (llamadas/créditos por minuto): Gratis 20/20, Individual 30/100, Pro 60/300 y Mega 300/1.500. Los límites devuelven 429 con `Retry-After`; un rechazo no consume. Las admisiones consumen incluso con caché o error posterior. La documentación y el listado de herramientas son públicos y no consumen; todo `tools/call` requiere login.
 
 ## Ejemplos (pregúntale a tu IA)
 
@@ -281,7 +281,7 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 
 | Tool | What it does |
 |---|---|
-| `ver_entrada` | Show one of your entries by id (or its `/entradas/…` link) — in the inbox, archived or discarded: gazette, amount, deadline, place, where it sits in your flow, the alert that matched it, its ficha facts, summary, links and notes, plus the BDNS code or tender id to continue with `detalle_convocatoria` / `detalle_licitacion`. |
+| `ver_entrada` | Show one of your entries by id (or its `/entradas/…` link) — in the inbox, archived or discarded: gazette, amount, deadline, place, where it sits in your flow, the alert that matched it, its ficha facts, summary, links and notes, plus the BDNS code or tender id to continue with `detalle_oportunidad`. |
 | `anotar_entrada` | Write a note on an entry: something done, something pending, something to remember. With `fecha` it becomes a calendar deadline and you get an email 15 days, 7 days and 1 day before. |
 | `listar_notas` | An entry's notes, newest first, with their due date and author. |
 | `borrar_nota` | Delete one of your own notes (author only). |
