@@ -114,12 +114,12 @@ Trial y Oposiciones tienen el cupo Gratis. El mes y el minuto son naturales UTC;
 | Herramientas | Créditos por llamada |
 |---|---:|
 | `buscar_oportunidades`, `buscar_boletines`, `resumen_boletin`, `mis_novedades`, `resumen_semana`, `listar_clientes`, `listar_entradas`, `ver_entrada`, `listar_notas` | 1 |
-| `buscar_empresa`, `perfil_empresa`, `detalle_licitacion`, `detalle_convocatoria` | 5 |
+| `buscar_empresa`, `perfil_empresa`, `detalle_oportunidad` | 5 |
 | `vigilar_empresa` | 5 por nombre que haya que resolver; 0 con NIF |
 | `expediente`, `leer_documento` | 1 |
-| `guardar_ficha` | 5 con `prerrellenar`; 0 sin él |
+| `guardar_cliente` | 5 con `prerrellenar`; 0 sin él |
 | `guardar_documento`, `confirmar_documento`, `revisar_documento`, `pasos`, `pasos_guardados`, `plazo`, `importes`, `cambiar_estado`, `pedir_documentos` | 0 |
-| `listar_mis_alertas`, `crear_alerta`, `pausar_alerta`, `reactivar_alerta`, `editar_alerta`, `borrar_alerta`, `asignar_entrada`, `desasignar_entrada`, `descartar_entrada`, `crear_cliente`, `editar_cliente`, `vincular_alerta`, `desvincular_alerta`, `anotar_entrada`, `borrar_nota` | 0 |
+| `listar_mis_alertas`, `crear_alerta`, `editar_alerta`, `borrar_alerta`, `asignar_entrada`, `desasignar_entrada`, `descartar_entrada`, `anotar_entrada`, `borrar_nota` | 0 |
 
 Las escrituras mantienen los límites y confirmaciones del plan. Los lotes reservan todo su coste atómicamente antes de ejecutar herramientas. Una admisión consume incluso con caché o fallo posterior; los rechazos no descuentan. Sin login se devuelve 401; con saldo agotado, tope de perfiles o ráfaga excesiva, 429 con `Retry-After`. `X-Quota-Admission-ID` identifica la reserva registrada atómicamente con el débito; en [Ajustes → API](https://boletinclaro.es/ajustes/api) se puede consultar y conciliar el registro mensual de MCP, API y web (actor, operación, coste y saldo antes/después, sin consultas ni claves en claro; retención 400 días desde el cierre del mes). El consumo anterior al inicio del registro se muestra como saldo de apertura. `X-Quota-*` informa del saldo en créditos; `X-RateLimit-Minute-*`, de las llamadas; `X-Credits-Minute-*`, de los créditos por minuto. Si no se puede reservar se devuelve 503 y no se consultan datos. Puede esperar o cambiar de plan en [Planes](https://boletinclaro.es/planes).
 
@@ -138,8 +138,7 @@ Todas requieren iniciar sesión con una cuenta de Boletín Claro (vale la gratui
 | **`resumen_boletin`** | Qué se publicó en un boletín un día concreto, agrupado por materia. |
 | **`buscar_empresa`** | Encuentra el NIF de una empresa por su nombre y su total de dinero público recibido. |
 | **`perfil_empresa`** | Cuánto dinero público ha recibido una empresa (por NIF): subvenciones, contratos, I+D europeo y mercantil, con totales y sectores. |
-| **`detalle_convocatoria`** | Detalle de una convocatoria de subvenciones (BDNS): importe total, nº de concesiones y principales beneficiarios. |
-| **`detalle_licitacion`** | Detalle de una licitación pública (PLACSP): importe, plazo, lugar, CPV, lotes, órgano y adjudicatarios. |
+| **`detalle_oportunidad`** | Detalle de una subvención (BDNS: importe total, concesiones y principales beneficiarios) o de una licitación (PLACSP: importe, plazo, lugar, CPV, lotes, órgano y adjudicatarios), por el enlace de su ficha. |
 
 ### Tus alertas
 
@@ -149,8 +148,7 @@ Todas requieren iniciar sesión con una cuenta de Boletín Claro (vale la gratui
 | **`resumen_semana`** | El resumen de la semana de todas tus alertas. |
 | **`listar_mis_alertas`** | Tus alertas: qué vigila cada una, en qué boletines y en qué estado está. |
 | **`crear_alerta`** | Crea una alerta a partir de una descripción en lenguaje natural (te enseña un resumen antes de crearla). Puedes fijar los boletines que vigila o quitar alguno, por ejemplo los fondos europeos. |
-| **`editar_alerta`** | Cambia qué vigila una alerta: tema, zona, importes o boletines. |
-| **`pausar_alerta`** · **`reactivar_alerta`** | Deja de recibir avisos de una alerta, o vuelve a recibirlos. |
+| **`editar_alerta`** | Cambia una alerta: qué vigila (tema, zona, importes o boletines), adónde avisa, su nombre, si está activa (pausar o reactivar) y a qué clientes nutre. |
 | **`borrar_alerta`** | Borra una alerta y las entradas que solo encontró ella y no has archivado bajo un cliente, con sus notas y documentos (también las descartadas, que ya no podrás recuperar). Lo archivado bajo un cliente se queda, con sus notas y documentos, igual que lo que también encontró otra de tus alertas. Pide confirmación; pausarla es la alternativa reversible. |
 | **`vigilar_empresa`** | Vigila empresas concretas por nombre o NIF y entérate de lo que ganan o publican. |
 
@@ -175,8 +173,7 @@ Para quien sigue el dinero público de varios clientes. Requieren tener el modo 
 | **`listar_entradas`** | El inbox: lo que ha encajado con tus alertas y aún no has archivado bajo ningún cliente. Se filtra por alerta, cliente, veredicto, fecha de llegada, importe o texto del título, admite una línea por entrada y pagina con cursor. |
 | **`asignar_entrada`** · **`desasignar_entrada`** | Archiva una entrada bajo uno o varios clientes, o deshaz un archivado. |
 | **`descartar_entrada`** | Saca del inbox lo que no interesa a ningún cliente (no borra nada: se recupera desde la web). Por ids o en bloque con los filtros de `listar_entradas`, siempre con vista previa antes. |
-| **`crear_cliente`** · **`editar_cliente`** | Da de alta un cliente y mantén al día su descripción, que es el contexto del triaje. |
-| **`vincular_alerta`** · **`desvincular_alerta`** | Vincula una alerta a un cliente, o deshaz el vínculo. |
+| **`guardar_cliente`** | Da de alta un cliente o cámbialo: su descripción, que es el contexto del triaje, su NIF y su ficha, que se puede completar del Registro Mercantil. Sin cliente, la ficha de tu entidad. |
 
 ### Expediente — preparar una solicitud
 
@@ -191,7 +188,6 @@ Lo que hagas queda en la ficha del expediente en boletinclaro.es, que ve tu equi
 | **`plazo`** | Un plazo fijo, o uno legal en días hábiles que calcula Boletín Claro con los calendarios oficiales. |
 | **`importes`** · **`cambiar_estado`** | Lo solicitado y lo concedido (por lote en una licitación), y el estado: presentada con su registro, concedida, descartada… |
 | **`pedir_documentos`** · **`revisar_documento`** | Un enlace para que un tercero suba documentos, y la revisión de lo que llega. |
-| **`guardar_ficha`** | Los datos de la ficha del cliente o de tu entidad, que se pueden completar del Registro Mercantil por el NIF. |
 
 Lo que cambia algo importante se enseña antes de aplicarlo. Los papeles del cliente sirven en todos sus expedientes; lo común de la convocatoria, en todos sus clientes.
 
@@ -267,8 +263,7 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 | `resumen_boletin` | What a given gazette published on a given day, grouped by subject. |
 | `buscar_empresa` | Find a company's tax ID (NIF) by name, with the total public money it has received. |
 | `perfil_empresa` | How much public money a company (by NIF) has received: grants, contracts, EU R&D and company-registry data, with totals and sectors. |
-| `detalle_convocatoria` | Full detail of a grant call (BDNS): total amount, number of awards and main beneficiaries. |
-| `detalle_licitacion` | Full detail of a public tender (PLACSP): amount, deadline, place, CPV, lots, contracting body and awardees. |
+| `detalle_oportunidad` | Full detail of a grant call (BDNS: total amount, awards and main beneficiaries) or a public tender (PLACSP: amount, deadline, place, CPV, lots, contracting body and awardees), by its ficha link. |
 
 **Your alerts:**
 
@@ -278,8 +273,7 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 | `resumen_semana` | This week's digest across all your alerts. |
 | `listar_mis_alertas` | Your alerts: what each one watches, in which gazettes, and its status. |
 | `crear_alerta` | Create an alert from a natural-language description (previewed before it is created). You can pin the gazettes it watches or leave some out, such as EU funding. |
-| `editar_alerta` | Change what an alert watches: topic, area, amounts or gazettes. |
-| `pausar_alerta` · `reactivar_alerta` | Stop or resume the notifications of one alert. |
+| `editar_alerta` | Change an alert: what it watches (topic, area, amounts or gazettes), where it notifies, its name, whether it is active (pause or resume) and which clients it feeds. |
 | `borrar_alerta` | Delete an alert and the entries only it found that you have not filed under a client, with their notes and documents (discarded ones too, which can then no longer be recovered). Entries filed under a client keep their notes and documents, and entries another of your alerts also found stay (confirmation required). |
 | `vigilar_empresa` | Watch specific companies by name or tax ID. |
 
@@ -300,8 +294,7 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 | `listar_entradas` | The inbox: what your alerts matched and you have not filed under any client yet. Filter by alert, client, verdict, arrival date, amount or title text; one line per entry if you like; paged with a cursor. |
 | `asignar_entrada` · `desasignar_entrada` | File an entry under one or more clients, or undo it. |
 | `descartar_entrada` | Discard what interests no client (recoverable from the web, never deleted). By id or in bulk with `listar_entradas`' filters, always previewed first. |
-| `crear_cliente` · `editar_cliente` | Create a client and keep its description current — it is the context used to triage. |
-| `vincular_alerta` · `desvincular_alerta` | Link an alert to a client, or unlink it. |
+| `guardar_cliente` | Create or change a client: its description (the context used to triage), its tax ID and its file, which can be prefilled from the company registry; without a client, your own entity's file. |
 
 **Expediente** (preparing an application; it shows up on the expediente at boletinclaro.es):
 
@@ -311,7 +304,7 @@ Every tool requires signing in with a Boletín Claro account (the free one works
 | `leer_documento` · `guardar_documento` · `confirmar_documento` | Read a document (uploaded PDFs and Word files too, or an official one by its link), save requirements, fit and drafts in markdown or CSV, and mark the version the user approved. |
 | `pasos` · `pasos_guardados` | The application's steps by phase, and the steps saved from other applications to reuse what worked. |
 | `plazo` · `importes` · `cambiar_estado` | A fixed deadline or a legal one in working days computed by Boletín Claro; the amounts asked for and granted (per lot in a tender); the status (submitted with its registry number, granted, discarded…). |
-| `pedir_documentos` · `revisar_documento` · `guardar_ficha` | A link for a third party to upload documents and the review of what arrives; the client's or your own entity's file, which can be prefilled from the company registry. |
+| `pedir_documentos` · `revisar_documento` | A link for a third party to upload documents and the review of what arrives. |
 
 See the connection snippets above.
 
